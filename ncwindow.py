@@ -64,10 +64,12 @@ class NC_file(Frame):
         
     def jump_line(self, event):
        if (self.jump_enable):
-        self.set_line_num(int(self.txt.index('insert').split('.')[0]))
+         if (self.parent.machine.Execute != 1):
+           self.set_line_num(int(self.txt.index('insert').split('.')[0]))
     
     def get_line(self):   
        s = self.txt.get( str(self.Line)+'.0', str(self.Line+1)+'.0').strip()+"\r\n"
+       s = s.encode('ascii','ignore')
        l = int(self.txt.index('end').split('.')[0])       
        self.Line += 1        
        if (self.Line > l):

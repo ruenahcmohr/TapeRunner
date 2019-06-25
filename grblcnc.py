@@ -136,7 +136,7 @@ class grbl_cnc(Frame):
     def reply_ok(self):
       # WaitAck should be true, if its not, wtf just got an OK?
       if (self.Execute == 1):  # get a line and send it.
-        self.sendLine()
+        self.sendLine()  # this needs to be a flag so that, when resuming from a pause, we know if we can send a line right away.
        
     def reply_error(self, details):
       #Eddy lost a g-string, and he tried to keep going, but it sounded like hell.
@@ -157,21 +157,22 @@ class grbl_cnc(Frame):
     def sendLine(self):
         s = self.parent.ncfile.get_line()
         if (s != NONE):
-         c = s.strip("\r\n")
-         self.WaitAck = True
-         self.sendString(c)
+           c = s.strip("\r\n")
+           self.WaitAck = True
+           self.sendString(c)
         else:
            self.Execute = 0
            self.stopwatch.stop()
            self.parent.ncfile.set_line_num(1)
-           print "Run Finished."  
+	   c = self.stopwatch.timerText.get()
+           print "Run Finished. " + c
         return                     
              
              
     def sendString(self, string):      
         if (self.CommPort.isOpen() ):
           self.History.appendLine(string + "     ")
-          self.CommPort.write(string + "\n")           #\r or \n, but not both!
+          self.CommPort.write(string.encode() + "\n")           #\r or \n, but not both!
 
     
     

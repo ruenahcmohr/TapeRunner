@@ -17,11 +17,13 @@ class HistoryWindow(Text):
      
    def appendLine(self, string ):
         self.insert(END, string)
+	self.see(END)
         self.limitHistory()
    
    def limitHistory(self):
      count = int(self.index('end-1c').split('.')[0])
-     if (count > 15):
+     #if (count > 15):
+     if (count > 100):
        self.delete(1.0, 2.0)
 
 
