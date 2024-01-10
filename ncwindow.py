@@ -1,5 +1,9 @@
-from Tkinter import * 
-import tkFileDialog
+#from tkinter import * 
+#import tkFileDialog
+
+from tkinter import filedialog
+from tkinter import *
+
 
 class NC_file(Frame):
 
@@ -36,7 +40,7 @@ class NC_file(Frame):
       if (self.jump_enable):
         ftypes = [('NC files', '*.nc'), ('All files', '*')]
         
-        filename = tkFileDialog.askopenfilename(filetypes=ftypes)
+        filename = filedialog.askopenfilename(filetypes=ftypes)
         if filename:
          # yea we need sanity checks added in here      
             iofile = open(filename, "r")
@@ -48,7 +52,7 @@ class NC_file(Frame):
 
     def save_command(self):
         ftypes = [('NC files', '*.nc'), ('All files', '*')]
-        iofile = tkFileDialog.asksaveasfile(mode='w', filetypes = ftypes)
+        iofile = filedialog.asksaveasfile(mode='w', filetypes = ftypes)
         if iofile != None:
              self.filename.set(iofile.name)
              data = self.txt.get('1.0', END+'-1c')
@@ -77,11 +81,11 @@ class NC_file(Frame):
        else:
          self.txt.see(str(self.Line+8)+'.0')
          self.set_line_num(self.Line)
-         return s
+         return s.decode()
          
     def spooltest(self):
       s = self.get_line()
       while (s):
-         print s.strip()
+         print (s.strip())
          s = self.get_line()
    

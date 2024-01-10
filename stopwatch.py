@@ -1,6 +1,6 @@
 
 import threading
-from Tkinter import *
+from tkinter import *
 import time 
 
 class Stopwatch(Label):
@@ -19,7 +19,7 @@ class Stopwatch(Label):
     # FOR FOX SAKE, python cant clean up threads properly.
     #    and there is no way to interrupt the running timer.
     def terminate(self):
-      print "Please allow me 1 second while I figure out how to quit."
+      print ("Please allow me 1 second while I figure out how to quit.")
       self.cycle = False
     
     def start(self):

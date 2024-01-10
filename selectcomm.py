@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 import serial
 # this is python-serial v2.6-1 + (debian)
 #  oh, and its broken, so you have to apply "fix #26"
@@ -20,7 +20,7 @@ import serial
 #
 #
 import serial.tools.list_ports
-import ttk
+from tkinter import ttk
  
 
 class SelectComm(): 

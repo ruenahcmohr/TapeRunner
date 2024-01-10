@@ -1,5 +1,5 @@
 
-from Tkinter import * 
+from tkinter import * 
 from historyWindow import *
 from stopwatch import *
 from selectcomm import *
@@ -113,7 +113,7 @@ class grbl_cnc(Frame):
       self.after(41, self.serialService)
       if (self.CommPort.isOpen() ):
         if ( self.CommPort.inWaiting() > 0 ):                           # if we have data....
-           self.SerialBuff += self.CommPort.read(self.CommPort.inWaiting())        # read data, append to buffer, no, readline will (now) just do the same thing.                      
+           self.SerialBuff += self.CommPort.read(self.CommPort.inWaiting()).decode()        # read data, append to buffer, no, readline will (now) just do the same thing.                      
         self.SerialBuff = self.SerialBuff.lstrip("\n\r")                   # remove wayward cr/lf  
         if (len(self.SerialBuff) > 0):                         #do we have data?
          r = re.match(r"(.*?[\r|\n]+)", self.SerialBuff)       # do we have a line?
@@ -121,7 +121,7 @@ class grbl_cnc(Frame):
            thisLine = r.group(0)                                #capture whole line
            self.SerialBuff = self.SerialBuff[len(thisLine):]                # trim off what we just got           
            thisLine = thisLine.strip("\r\n")
-	   self.History.appendLine("   "+thisLine + "\n")
+           self.History.appendLine("   "+thisLine + "\n")
            self.processLine(thisLine)        
         
          
@@ -164,15 +164,15 @@ class grbl_cnc(Frame):
            self.Execute = 0
            self.stopwatch.stop()
            self.parent.ncfile.set_line_num(1)
-	   c = self.stopwatch.timerText.get()
-           print "Run Finished. " + c
+           c = self.stopwatch.timerText.get()
+           print ("Run Finished. " + c)
         return                     
              
              
     def sendString(self, string):      
         if (self.CommPort.isOpen() ):
           self.History.appendLine(string + "     ")
-          self.CommPort.write(string.encode() + "\n")           #\r or \n, but not both!
+          self.CommPort.write((string + "\n").encode() )           #\r or \n, but not both!
 
     
     

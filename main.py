@@ -1,7 +1,8 @@
 
-from Tkinter import * 
+from tkinter import * 
 from grblcnc import *
-from tkMessageBox import *
+#from tkMessageBox import *
+from tkinter import messagebox
 from ncwindow import *
 from pendant import *
 

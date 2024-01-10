@@ -3,7 +3,7 @@
 # coding techniques employed:  pseudorandom-spiderweb, s (otherwise 'Stupidly short variable names'), 
 #                                global-fixedit!, CammelCase, anti-oops, oneWindow-functions.
 
-from Tkinter import *
+from tkinter import *
 
 
 
@@ -17,7 +17,7 @@ class HistoryWindow(Text):
      
    def appendLine(self, string ):
         self.insert(END, string)
-	self.see(END)
+        self.see(END)
         self.limitHistory()
    
    def limitHistory(self):
