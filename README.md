@@ -26,7 +26,13 @@ You can edit the file at any time (even while the program is running)
 The blue hilighted line is the one that it will next send to the machine, if taperunner is not in 'run' mode, 
 it will follow whatever line you click on. You can use this with machine->step to send particular lines in whatever order you want.
 
+
+Taperunner does not keep the NC file open, when you open a file, it reads it into the text window and closes the file. There is only a 'save as' option, meaning that if you overwrite a file, you had to really be trying.
+
+Why is quit/exit under 'file' in programs, its got nothing to do with the file.... exit is under 'App'
+
+Pendant is not completed yet. Maybe one day.
+
+Hmm, apparently help->about is broken, ... huh...
+
 Have fun and don't you dare tell me about any bugs!
-
-
-
